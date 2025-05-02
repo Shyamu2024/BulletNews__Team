@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home_Page</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="first-header">
+      <div class="top-bar">
+        <div class="left">
+          <img src="../images/sun.svg" alt="Sun" />
+          <p>36°C Kathmandu</p>
+          
+          <p>Monday, April 07 2025</p>
+        </div>
+
+        <div class="right">
+          <div class="dropdown">
+            <button class="icon-btn">
+              <img src="../images/global.png" alt="Language" />
+              <img src="../images/down.png" alt="Down" />
+            </button>
+            <ul class="dropdown-menu">
+              <li>English</li>
+              <li>Nepali</li>
+              <li>Hindi</li>
+            </ul>
+          </div>
+          <div class="dropdown">
+            <button class="icon-btn">
+              <img src="../images/profile.png" alt="Profile" />
+              <img src="../images/down.png" alt="Down" />
+            </button>
+            <ul class="dropdown-menu">
+              <li>View Profile</li>
+              <li>Settings</li>
+              <li>Logout</li>
+            </ul>
+          </div>
+          <button class="icon-btn theme-toggle">
+            <img src="../images/sun.svg" alt="Light" class="sun" />
+            <img src="../images/half moon.png" alt="Dark" class="moon" />
+          </button>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <div class="logo">
+          <img src="../images/Logo.svg" alt="Logo" />
+        </div>
+        <div class="ad-area">
+          <p>Here we will show Ad</p>
+          <button class="action-btn">Actionable Btn</button>
+        </div>
+      </nav>
+      <div class="sub-nav">
+        <div class="search-bar">
+          <button class="menu-btn">☰</button>
+          <input type="text" placeholder="Search Keywords" />
+        </div>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">MyFeed</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Blogs</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="news-wrapper">
+      <div class="left-box">
+        <div class="datetime" id="datetime"></div>
+        <h1>Headlines In<br />Headphones On</h1>
+        <p>Get daily highlights in audio & visual</p>
+        <div class="player-box">
+          <div class="player-header">🎧 Let's Hear the News ➜</div>
+          <input type="range" class="progress" />
+          <div class="controls">
+            <button>✖</button>
+            <button>⏮️</button>
+            <button>▶️</button>
+            <button>⏭️</button>
+            <button>🔁</button>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-box">
+        <div class="carousel-inner" id="carousel">
+          <div class="slide active">
+            <img src="../images/3 protest.png" alt="News 1" />
+            <h2>Doctors rally in Kathmandu for healthcare reforms</h2>
+          </div>
+          <div class="slide">
+            <img src="../images/4 protest.png" alt="News 2" />
+            <h2>Rain floods Chitwan’s streets as monsoon starts</h2>
+          </div>
+          <div class="slide">
+            <img src="../images/one protest.png" alt="News 3" />
+            <h2>Youth innovators bag AI National Award</h2>
+          </div>
+          <div class="slide">
+            <img src="../images/two protesst.png" alt="News 4" />
+            <h2>New electric buses launched in Kathmandu Valley</h2>
+          </div>
+        </div>
+        <div class="nav-buttons">
+          <button onclick="prevSlide()">⟨ Prev</button>
+          <button onclick="nextSlide()">Next ⟩</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pc-wrapper">
+      <div class="pc-title">Popular Category</div>
+      <div class="pc-list">
+        <div class="pc-item">
+          <img src="../images/politics.png" alt="Politics" class="pc-img" />
+          <p class="pc-label">Politics</p>
+        </div>
+        <div class="pc-item">
+          <img src="../images/technology.png" alt="Technology" class="pc-img" />
+          <p class="pc-label">Technology</p>
+        </div>
+        <div class="pc-item">
+          <img src="../images/health.png" alt="Health" class="pc-img" />
+          <p class="pc-label">Health</p>
+        </div>
+        <div class="pc-item">
+          <img src="../images/sports.png" alt="Sports" class="pc-img" />
+          <p class="pc-label">Sports</p>
+        </div>
+        <div class="pc-item">
+          <img src="../images/climate.png" alt="Climate" class="pc-img" />
+          <p class="pc-label">Climate</p>
+        </div>
+        <div class="pc-item">
+          <img src="../images/finance.png" alt="Finance" class="pc-img" />
+          <p class="pc-label">Finance</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".dropdown .icon-btn").forEach((button) => {
+        button.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const parent = button.parentElement;
+          document.querySelectorAll(".dropdown").forEach((drop) => {
+            if (drop !== parent) drop.classList.remove("active");
+          });
+          parent.classList.toggle("active");
+        });
+      });
+
+      document.addEventListener("click", () => {
+        document.querySelectorAll(".dropdown").forEach((drop) => drop.classList.remove("active"));
+      });
+
+      const toggleBtn = document.querySelector(".theme-toggle");
+      toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        toggleBtn.querySelector(".sun").style.display = document.body.classList.contains("dark") ? "none" : "block";
+        toggleBtn.querySelector(".moon").style.display = document.body.classList.contains("dark") ? "block" : "none";
+      });
+
+      const slides = document.querySelectorAll(".slide");
+      let index = 0;
+
+      function showSlide(i) {
+        slides.forEach((s) => s.classList.remove("active"));
+        slides[i].classList.add("active");
+      }
+
+      function nextSlide() {
+        index = (index + 1) % slides.length;
+        showSlide(index);
+      }
+
+      function prevSlide() {
+        index = (index - 1 + slides.length) % slides.length;
+        showSlide(index);
+      }
+
+      setInterval(nextSlide, 3000);
+
+      function updateDateTime() {
+        const now = new Date();
+        const options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        const time = now.toLocaleTimeString();
+        const date = now.toLocaleDateString(undefined, options);
+        document.getElementById("datetime").innerHTML = `${date} | ${time}`;
+      }
+
+      setInterval(updateDateTime, 1000);
+      updateDateTime();
+    </script>
+
+
+
+  <div class="headline-wrapper">
+    <div class="line"></div>
+    <h2 class="section-title">Trending News</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="news-cards-container">
+    <div class="news-card">
+      <div class="news-image-placeholder"></div>
+      <div class="news-source">Source | April 07 2025</div>
+      <div class="news-headline">Headline of the News</div>
+      <a href="#" class="read-more-btn">Read More</a>
+    </div>
+
+    <div class="news-card">
+      <div class="news-image-placeholder"></div>
+      <div class="news-source">Source | April 07 2025</div>
+      <div class="news-headline">Headline of the News</div>
+      <a href="#" class="read-more-btn">Read More</a>
+    </div>
+
+    <div class="news-card">
+      <div class="news-image-placeholder"></div>
+      <div class="news-source">Source | April 07 2025</div>
+      <div class="news-headline">Headline of the News</div>
+      <a href="#" class="read-more-btn">Read More</a>
+    </div>
+
+    <div class="news-card">
+      <div class="news-image-placeholder"></div>
+      <div class="news-source">Source | April 07 2025</div>
+      <div class="news-headline">Headline of the News</div>
+      <a href="#" class="read-more-btn">Read More</a>
+    </div>
+  </div>
+
+  <div class="advertisement-section">
+    <span>Here we will show Ad</span>
+    <button class="action-button">Actionable Btn</button>
+  </div>
+
+
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Get First Update</title>
+  <link rel="stylesheet" href="climate_poll.css">
+</head>
+<body>
+
+  <div class="climate-top-bar">
+    <div class="climate-title">Get First Update</div>
+    <div class="climate-subtitle">Be the First to Hear the Headlines.<br>Subscribe for Daily Summaries.</div>
+    <div class="climate-subscribe-container">
+      <input type="email" placeholder="someone@example.com" class="climate-input">
+      <button class="climate-subscribe-button">Subscribe</button>
+    </div>
+  </div>
+
+  <div class="climate-divider"><span>What’s Your Take?</span></div>
+
+  <div class="climate-poll-box">
+    <p>Do you believe enough is being done to fight climate change?</p>
+    <label><input type="radio" name="climate"> Yes — progress is happening</label>
+    <label><input type="radio" name="climate"> No — it’s too little, too late</label>
+    <label><input type="radio" name="climate"> Somewhat — but we need more urgency</label>
+    <label><input type="radio" name="climate"> Not Sure</label>
+  </div>
+
+  <div class="climate-poll-box">
+    <p>What action would you personally take to help fight climate change?</p>
+    <label><input type="radio" name="action"> Reduce energy and water usage</label>
+    <label><input type="radio" name="action"> Use public transport or carpool</label>
+    <label><input type="radio" name="action"> Support sustainable products</label>
+    <label><input type="radio" name="action"> I'm not sure what I can do</label>
+  </div>
+
+  <div class="climate-submit-button">
+    <button type="submit">Submit</button>
+  </div>
+
+</body>
+</html>
+
+
+<footer class="footer">
+  <hr class="footer-divider" />
+
+  <div class="footer-container">
+    <!-- Contact Section -->
+    <div class="footer-box">
+      <h3>CONTACT US</h3>
+      <h4><a href="">Write Blogs for the POST</a></h4>
+      <h4><a href="">Advertise in the POST</a></h4>
+      <h4><a href="">Let’s Connect</a></h4>
+    </div>
+
+    <!-- Logo and Social Icons -->
+    <div class="footer-box center-box">
+      <img src="../images/Logo.svg" alt="Bullet News Logo" />
+      <p>Follow Us On:</p>
+      <div class="social-icons">
+        <img src="../images/facebook.svg" alt="" />
+        <img src="../images/instagram.svg" alt="" />
+        <img src="../images/linkedin.svg" alt="" />
+        <img src="../images/tiktok.svg" alt="" />
+        <img src="../images/tweeter.svg" alt="" />
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-box">
+      <h3>QUICK LINKS</h3>
+      <h4><a href="#">News</a></h4>
+      <h4><a href="#">Blogs</a></h4>
+      <h4><a href="#">About</a></h4>
+    </div>
+  </div>
+
+  <h5 class="footer-bottom">
+    © 2025 BULLET NEWS. ALL RIGHTS RESERVED. REGISTERED COMPANY NUMBER:
+    +9779852343659
+    <br />
+    <a href="#">TERMS & CONDITIONS</a>
+  </h5>
+</footer>
+
+<!-- Font Awesome for icons (CDN) -->
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
+  </body>
+</html>
