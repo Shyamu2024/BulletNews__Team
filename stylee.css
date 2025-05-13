@@ -1008,3 +1008,75 @@ body {
 .footerUniq_footerTerms {
   text-decoration: underline;
 }
+
+
+
+/* styles.css */
+
+/* Container for the navigation and search bar */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+/* Navigation links styling */
+.nav-links {
+    display: flex;
+    gap: 150px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    /* font-size: 16px; */
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #007BFF;
+}
+
+/* Search container styling */
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-input {
+    padding: 8px 16px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 14px;
+    width: 200px;
+    transition: width 0.3s ease;
+}
+
+.search-input:focus {
+    width: 250px;
+    outline: none;
+    border-color: #007BFF;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+}
+
+
